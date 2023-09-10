@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :require_user_logged_in!, only: %i[ edit update destroy ]
 
   # GET /users or /users.json
   def index
@@ -18,6 +19,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if session[:user_id] != @user.id
+      redirect_to '/', alert: "You do not have permission for this action."
+      return
+    end
   end
 
   # POST /users or /users.json
@@ -37,6 +42,11 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
+    if session[:user_id] != @user.id
+      redirect_to '/', notice: "You do not have permission for this action."
+      return
+    end
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
@@ -50,10 +60,15 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
+    if session[:user_id] != @user.id
+      redirect_to '/', alert: "You do not have permission for this action."
+      return
+    end
+
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to '/', alert: "User was successfully destroyed." }
       format.json { head :no_content }
     end
   end
