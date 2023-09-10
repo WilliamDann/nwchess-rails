@@ -1,17 +1,7 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Email:</strong>
-    <%= user.email %>
-  </p>
-
-  <p>
-    <strong>Firstname:</strong>
-    <%= user.firstName %>
-  </p>
-
-  <p>
-    <strong>Lastname:</strong>
-    <%= user.lastName %>
-  </p>
-
+<div class="flex min-w-0 gap-x-4">
+  <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="/images/img.jpg" alt="">
+  <div class="min-w-0 flex-auto">
+    <p class="text-sm font-semibold leading-6 text-gray-900"><%= user.firstName %> <%= user.lastName %></p>
+    <p class="mt-1 truncate text-xs leading-5 text-gray-500"><%= user.email %></p>
+  </div>
 </div>
