@@ -1,0 +1,34 @@
+// table for storing user info
+User
+	id					// id for the user
+
+	email				// email for the user
+	password_digest		// the password hash for the user
+
+	firstName 			// first name for the user
+	lastname    		// last name for the user
+
+// table for storing user login sessions
+Session
+	id					// id for the login session
+
+	
+	
+// table for storing event info
+Event
+	id		// id for the event
+	name	// name of the event
+	desc	// text desc for the event (rich text?)
+
+// table for storing what users are involved with what events
+Registration
+	id		// id for the registration
+	userId 	// id for the registered user
+	eventId	// id for the event 
+	type	// the type of registration
+		// 1. Player
+		// 2. TD
+		// 3. Organizer
+
+// table for storing results of games in tournaments
+Result
