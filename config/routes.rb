@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/', to: 'welcome#index'
+  get '/', to: 'dashboards#index'
 
   resources :users
   resources :sessions
