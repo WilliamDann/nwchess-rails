@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_10_162616) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_10_185433) do
   create_table "sessions", force: :cascade do |t|
     t.string "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "session_token"
   end
 
   create_table "users", force: :cascade do |t|
