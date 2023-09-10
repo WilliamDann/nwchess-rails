@@ -1,0 +1,21 @@
+<div class='border-2 border-grey-500 w-1/3'>
+    <% if @user %>
+        <h2 class="rounded-md px-3 py-2 font-medium">Hello, <%= @user.firstName %></h2>
+
+        
+        <div class="px-4">
+            <%= render partial:"users/user", locals:{user:@user} %>
+            <br>
+            
+            <%= link_to "View account", @user %><br>
+            <%= link_to "Edit account", edit_user_path(@user) %><br>
+            <%= button_to 'Logout', 'sessions/delete', method: :delete %>
+        </div>
+    <% else %>
+        <h2 class="rounded-md px-3 py-2 font-medium">User Dashboard</h2>
+
+        <div class="px-4">
+            <%= link_to "Sign in", 'sessions/new' %><br>
+        </div>
+    <% end %>
+</div>
