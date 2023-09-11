@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @reg_table %>
+
+<div>
+  <%= link_to "Edit this reg table", edit_reg_table_path(@reg_table) %> |
+  <%= link_to "Back to reg tables", reg_tables_path %>
+
+  <%= button_to "Destroy this reg table", @reg_table, method: :delete %>
+</div>
