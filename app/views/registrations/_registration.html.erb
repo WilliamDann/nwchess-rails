@@ -1,7 +1,10 @@
+<% player = User.find_by(id: registration.user_id) %>
+
 <div id="<%= dom_id registration %>">
   <p>
-    <strong>Registrationtype:</strong>
-    <%= registration.registrationType %>
+    <%= render partial:"users/user", locals:{user:player} %>
+
+    <p class="inline">As: <%= registration.registrationType %></p>
   </p>
 
 </div>
