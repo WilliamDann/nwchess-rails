@@ -1,0 +1,39 @@
+<% event = Event.find_by(id: params[:eventId]) %>
+
+<% if params[:eventId] %>
+  <%= form_with(model: registration) do |form| %>
+    <% if registration.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
+    
+        <ul>
+          <% registration.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+      
+    <div class='p-4'>
+      <p class='text-lg'><%= event.name %></p>
+      <div class="hidden">
+        <%= form.label :user_id, style: "display: block" %>
+        <%= form.number_field :user_id, value: Current.user.id %>
+      </div>  
+        
+      <div class="hidden">
+        <%= form.label :event_id, style: "display: block" %>
+        <%= form.number_field :event_id, value: event.id %>
+      </div>
+        
+      <div>
+        <%= form.label :registrationType, style: "display: block" %>
+        <%= form.select :registrationType, ['Player', 'TD', 'Staff'] %>
+      </div>
+        
+      <div>
+        <%= form.submit %>
+      </div>
+    </div>
+  <% end %>
+<% end %>    

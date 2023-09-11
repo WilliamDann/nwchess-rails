@@ -1,0 +1,18 @@
+<%= render @event %>
+<% registrations = Registration.where(:event_id => @event.id) %>
+<br>
+<% registrations.each do |registration| %>
+  <%= render registration %>
+  <p class="">
+  <%= link_to "Manage", registration %>
+  </p>
+  <br>
+<% end %>
+<br>
+
+<div>
+  <%= link_to "Edit this event", edit_event_path(@event) %> |
+  <%= link_to "Back to events", events_path %>
+
+  <%= button_to "Destroy this event", @event, method: :delete %>
+</div>

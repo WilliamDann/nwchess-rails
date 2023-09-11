@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Events</h1>
+
+<ul role="list" class="divide-y divide-gray-100">
+  <% @events.each do |event| %>
+    <li class="flex justify-between gap-x-6 py-5">
+      <%= render event %>
+      <div class="">
+
+        <%= link_to "Register", '/registrations/new?eventId='+event.id.to_s, class: "leading-6 text-gray-900 inline-block"%>
+        <%= link_to "View", event, class: "leading-6 text-gray-900 inline-block"%>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New event", new_event_path %>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :registrations
+  resources :events
+  resources :reg_tables
   get '/', to: 'dashboards#index'
 
   resources :users
