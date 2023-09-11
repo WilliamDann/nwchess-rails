@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
-  before_action :set_registration, only: %i[ show edit update destroy ]
-
+  before_action :set_registration,        only: %i[ show edit update destroy ]
+  before_action :require_user_logged_in!, only: %i[ edit update destroy ]
+  
   # GET /registrations or /registrations.json
   def index
     @registrations = Registration.all
@@ -22,6 +23,7 @@ class RegistrationsController < ApplicationController
   # POST /registrations or /registrations.json
   def create
     @registration = Registration.new(registration_params)
+
 
     respond_to do |format|
       if @registration.save
@@ -65,6 +67,6 @@ class RegistrationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def registration_params
-      params.require(:registration).permit(:registrationType)
+      params.require(:registration).permit(:registrationType, :event_id, :user_id)
     end
 end
