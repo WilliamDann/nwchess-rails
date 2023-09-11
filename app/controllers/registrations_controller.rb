@@ -1,7 +1,9 @@
 class RegistrationsController < ApplicationController
   before_action :set_registration,        only: %i[ show edit update destroy ]
-  before_action :require_user_logged_in!, only: %i[ edit update destroy ]
+  before_action :require_user_logged_in!, only: %i[ edit new update destroy ]
   
+  before_action :verify_user, only: %i[ update edit destroy ]
+
   # GET /registrations or /registrations.json
   def index
     @registrations = Registration.all
@@ -63,6 +65,14 @@ class RegistrationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
       @registration = Registration.find(params[:id])
+    end
+
+    # verify that the user is the same as the registration
+    def verify_user
+      if Current.user.id != @registration.user_id
+        redirect_to '/events/'+@registration.event_id.to_s, alert: "You cannot modify this user's registration"
+        return false
+      end
     end
 
     # Only allow a list of trusted parameters through.
